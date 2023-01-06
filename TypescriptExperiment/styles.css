@@ -1,0 +1,61 @@
+li{
+    background-color:black;
+      list-style: none;
+      margin:5px;
+      font-size:1.2rem;
+      padding:20px;
+      word-wrap:wrap;
+    }
+
+
+li:hover{
+    scale:103%;
+    
+    box-shadow:2px 3px 20px 5px rgba(255, 251, 0, 0.774);
+    cursor:default;
+}
+
+body{
+    background-color:black;
+    color:white;
+    text-align:center;
+    margin-left:30%;
+    margin-right:30%;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-size:16px;
+   
+}
+
+ul{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+li:nth-child(odd){
+    color:red;
+    background-color:rgb(27, 59, 27);
+   
+}
+
+li:nth-child(even){
+    color:green;
+ background-color:rgb(90, 24, 24);
+}
+
+h1{
+    text-decoration: underline;
+    font-size:2rem;
+}
+
+.app{
+    background-color: rgb(64, 65, 18);
+    min-height:100vh;
+    color:black;
+    font-weight:bold;
+}
