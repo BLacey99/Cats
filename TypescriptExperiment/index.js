@@ -1,64 +1,61 @@
-/* fetch("https://cat-fact.herokuapp.com/facts")
-.then(function(response){
-    return response.json()
-})
-.then(function(data){
-    console.log(data);
-})
- */
 const arrayBoi = [];
-
 let i = 1;
+let userInput = 15;
+let userAnimal = "cat";
+const arrayImages=[];
+const elem = document.createElement("img");
+elem.src = 'https://cataas.com/cat'; //Prints multiple copies of same cat due to fact that does batch checks on data verification.
 
-    (start = async() =>{
-    
-        while(arrayBoi.length < 15){
+async function getImages(userAnimal, userInput){
+  while(arrayImages.length < userInput){
+    const responseImg = await fetch(
+      `https://cataas.com/${userAnimal}`
+    );
+    const dataImg = await responseImg.url;
+      //populated factoid with text node containing each data items text info at index [entry]. 
+          arrayImages.push(dataImg);
+          console.log(dataImg);
+}
+}
+async function getFacts(userAnimal, userInput){
+
+    while (arrayBoi.length < userInput) {
+      const response = await fetch(
+        `https://cat-fact.herokuapp.com/facts/random?animal_type=${userAnimal}&amount=${userInput}`
+      );
+      const data = await response.json();
+      
+      for(entry in data) {
+      
+        //populated factoid with text node containing each data items text info at index [entry].
+        if (data[entry].status.verified === true) {
+          const factoid = document.createElement("li");
+     
           
-        const response = await fetch("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=25");
-        const data = await response.json();
-        //console.log(data[0].text);
-        console.log(data);
-        
-    
-    
-    
-        for(entry in data){
+          if (arrayBoi.length < userInput) {
           
-            //Testing
-            const texter = data[entry].text;
-            console.log(texter);
-    
-            //Make one element per entry in data
-            const factoid = document.createElement("li");
+            arrayBoi.push(data[entry].text);
             
-    
-         
-    
-            //populated factoid with text node containing each data items text info at index [entry].
-            if(data[entry].status.verified === true){
-                
-                if(arrayBoi.length < 15){
-                    arrayBoi.push(data[entry].text);
-                    factoid.appendChild(document.createTextNode(`#${i}: ${data[entry].text}`))
-                    document.querySelector(".Facts").appendChild(factoid);
-                    i++;
-                }else{
-                    break;
-                }
-               
-            }else{
-                continue;
-            }
-         
-            //add factoid to facts containter
         
-            //add spacers to facts container
+            i++;
+           
+          } else {
+            break;
+          }
+        } else {
+          continue;
         }
-    
+        
+      }
+      
     }
-       
-    })();
-    
-    
+    for(i = 0; i < userInput; i++){
+      const factoid = document.createElement("li");
+      factoid.appendChild(document.createTextNode(`#${i+1}: ${arrayBoi[i]}`));
+              factoid.appendChild(elem); 
+              document.querySelector(".Facts").appendChild(factoid);
+    }
 
+};
 
+getFacts(userAnimal, userInput);
