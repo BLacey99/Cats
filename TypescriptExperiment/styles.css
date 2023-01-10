@@ -5,6 +5,7 @@ li{
       font-size:1.2rem;
       padding:20px;
       word-wrap:wrap;
+      
     }
 
 
@@ -19,8 +20,10 @@ body{
     background-color:black;
     color:white;
     text-align:center;
-    margin-left:30%;
-    margin-right:30%;
+    margin-left:20%;
+    margin-right:20%;
+    
+    
 }
 
 *{
@@ -35,6 +38,7 @@ ul{
     display:flex;
     flex-direction:column;
     gap:10px;
+    
 }
 
 li:nth-child(odd){
@@ -58,4 +62,14 @@ h1{
     min-height:100vh;
     color:black;
     font-weight:bold;
+    
+}
+
+
+
+.Facts{
+    grid-template-columns: repeat(auto-fit, minmax(475px, 1fr) );
+    max-width:50%;
+    margin-left:auto;
+    margin-right:auto;
 }
