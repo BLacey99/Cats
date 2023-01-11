@@ -1,8 +1,10 @@
-let userInput = 10;
+let userInput = 9;
 let userAnimal = "cat";
 const arrayImages = [];
 const arrayFacts = [];
 const jsonArray = [];
+
+
 
 async function getImages(userInput, arrImgs) {
   while (arrImgs.length < userInput) {
@@ -15,7 +17,7 @@ async function getImages(userInput, arrImgs) {
         if (arrImgs.length < userInput) {
           if (
             arrImgs.includes(
-              `https://cataas.com${data.url}` ||
+              `https://cataas.com${data.url}` ||x``
                 `https://cataas.com${(data.url = "undefined")}`
             )
           ) {
@@ -57,22 +59,25 @@ async function getFacts(userAnimal, userInput, arrFacts) {
 }
 
 //write function to store data into json objects
-const buildData = (ImageGetter, FactGetter, imgArr, factArr) => {
-  const catFactory = (image, fact) => {
-    const getImage = () => image;
-    const getFact = () => fact;
 
-    const cat = {
-      image: getImage(),
-      fact: getFact(),
-    };
+const catFactory = (image, fact) => {
+  const getImage = () => image;
+  const getFact = () => fact;
 
-    const printCat = () => console.log(cat);
-    jsonArray.push(cat);
-    console.log(jsonArray);
-    
-    printCat();
+  const cat = {
+    image: getImage(),
+    fact: getFact(),
   };
+
+  const printCat = () => console.log(cat);
+  jsonArray.push(cat);
+  console.log(jsonArray);
+  
+  printCat();
+};
+
+const buildData = (ImageGetter, FactGetter, imgArr, factArr, factory) => {
+ 
 
   async function printData(factory) {
     await ImageGetter, await FactGetter;
@@ -80,17 +85,26 @@ const buildData = (ImageGetter, FactGetter, imgArr, factArr) => {
     for (i = 0; i < imgArr.length; i++) {
       factory(imgArr[i], factArr[i]);
     
+      const factContainer = document.createElement("div");
+      const paragraph = document.createElement("p");
+      const imgContainer = document.createElement("div");
       const factoid = document.createElement("li");
       const elem = document.createElement("img");
+
+      factContainer.classList.add("catCard");
+      paragraph.classList.add("factField");
+
       elem.src = imgArr[i];
-      factoid.appendChild(document.createTextNode(`#${i + 1}: ${factArr[i]}`));
-      document.querySelector(".Facts").appendChild(factoid);
-      document.querySelector(".Facts").appendChild(elem);
+      
+      paragraph.appendChild(document.createTextNode(`#${i + 1}: ${factArr[i]}`));
+      factContainer.appendChild(elem);
+      factContainer.appendChild(paragraph);
+      document.querySelector(".FactsContainer").appendChild(factContainer);
       // console.log(imgArr[i]);
       // console.log(factArr[i]);
     }
   }
-  printData(catFactory);
+  printData(factory);
 };
 
 //write function for creating list of items
@@ -99,5 +113,14 @@ buildData(
   getImages(userInput, arrayImages),
   getFacts(userAnimal, userInput, arrayFacts),
   arrayImages,
-  arrayFacts
+  arrayFacts,
+  catFactory
 );
+
+
+function newFacts(){
+  window.location.reload();
+}
+
+document.getElementById("factBtn").addEventListener("click", newFacts);
+
