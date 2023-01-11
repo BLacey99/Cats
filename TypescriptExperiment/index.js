@@ -77,18 +77,17 @@ const catFactory = (image, fact) => {
 };
 
 const buildData = (ImageGetter, FactGetter, imgArr, factArr, factory) => {
- 
+  const getFactory = () => factory;
 
-  async function printData(factory) {
+  (async function printData() {
     await ImageGetter, await FactGetter;
 
+
     for (i = 0; i < imgArr.length; i++) {
-      factory(imgArr[i], factArr[i]);
+      getFactory(imgArr[i], factArr[i]);
     
       const factContainer = document.createElement("div");
       const paragraph = document.createElement("p");
-      const imgContainer = document.createElement("div");
-      const factoid = document.createElement("li");
       const elem = document.createElement("img");
 
       factContainer.classList.add("catCard");
@@ -103,8 +102,8 @@ const buildData = (ImageGetter, FactGetter, imgArr, factArr, factory) => {
       // console.log(imgArr[i]);
       // console.log(factArr[i]);
     }
-  }
-  printData(factory);
+  })();
+
 };
 
 //write function for creating list of items
@@ -114,7 +113,7 @@ buildData(
   getFacts(userAnimal, userInput, arrayFacts),
   arrayImages,
   arrayFacts,
-  catFactory
+  catFactory()
 );
 
 
