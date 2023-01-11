@@ -70,6 +70,7 @@ const buildData = (ImageGetter, FactGetter, imgArr, factArr) => {
     const printCat = () => console.log(cat);
     jsonArray.push(cat);
     console.log(jsonArray);
+    
     printCat();
   };
 
