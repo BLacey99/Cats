@@ -1,125 +1,14 @@
+import {buildArray} from "./buildArray.js";
+
 let userInput = 9;
-let userAnimal = "cat";
-const arrayImages = [];
-const arrayFacts = [];
-const jsonArray = [];
+let tempArr = [];
 
-
-
-async function getImages(userInput, arrImgs) {
-  while (arrImgs.length < userInput) {
-    try {
-      const response = await fetch(`https://cataas.com/cat?json=true`);
-
-      const data = await response.json();
-      for (entry in data) {
-        //populated factoid with text node containing each data items text info at index [entry].
-        if (arrImgs.length < userInput) {
-          if (
-            arrImgs.includes(
-              `https://cataas.com${data.url}` ||x``
-                `https://cataas.com${(data.url = "undefined")}`
-            )
-          ) {
-            continue;
-          } else {
-            arrImgs.push(`https://cataas.com${data.url}`);
-          }
-        } else {
-          break;
-        }
-      }
-    } catch (error) {
-      console.log(error);
-      continue;
-    }
-  }
-  // console.log(arrImgs);
-}
-
-async function getFacts(userAnimal, userInput, arrFacts) {
-  while (arrFacts.length < userInput) {
-    const response = await fetch(
-      `https://cat-fact.herokuapp.com/facts/random?animal_type=${userAnimal}&amount=${userInput}`
-    );
-    const data = await response.json();
-    for (entry in data) {
-      //populated factoid with text node containing each data items text info at index [entry].
-      if (data[entry].status.verified === true) {
-        if (arrFacts.length < userInput) {
-          arrFacts.push(data[entry].text);
-        } else {
-          break;
-        }
-      } else {
-        continue;
-      }
-    }
-  }
-}
-
-//write function to store data into json objects
-
-const catFactory = (image, fact) => {
-  const getImage = () => image;
-  const getFact = () => fact;
-
-  const cat = {
-    image: getImage(),
-    fact: getFact(),
-  };
-
-  const printCat = () => console.log(cat);
-  jsonArray.push(cat);
-  console.log(jsonArray);
-  
-  printCat();
-};
-
-const buildData = (ImageGetter, FactGetter, imgArr, factArr, factory) => {
-  const getFactory = () => factory;
-
-  (async function printData() {
-    await ImageGetter, await FactGetter;
-
-
-    for (i = 0; i < imgArr.length; i++) {
-      getFactory(imgArr[i], factArr[i]);
-    
-      const factContainer = document.createElement("div");
-      const paragraph = document.createElement("p");
-      const elem = document.createElement("img");
-
-      factContainer.classList.add("catCard");
-      paragraph.classList.add("factField");
-
-      elem.src = imgArr[i];
-      
-      paragraph.appendChild(document.createTextNode(`#${i + 1}: ${factArr[i]}`));
-      factContainer.appendChild(elem);
-      factContainer.appendChild(paragraph);
-      document.querySelector(".FactsContainer").appendChild(factContainer);
-      // console.log(imgArr[i]);
-      // console.log(factArr[i]);
-    }
-  })();
-
-};
-
-//write function for creating list of items
-
-buildData(
-  getImages(userInput, arrayImages),
-  getFacts(userAnimal, userInput, arrayFacts),
-  arrayImages,
-  arrayFacts,
-  catFactory()
+buildArray(
+  tempArr,
+  userInput
 );
-
 
 function newFacts(){
   window.location.reload();
 }
-
 document.getElementById("factBtn").addEventListener("click", newFacts);
-
