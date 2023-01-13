@@ -1,6 +1,5 @@
 async function buildCards(arr){
-    let i = 0;
-    for (i; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         const factContainer = document.createElement("div");
         const paragraph = document.createElement("p");
         const elem = document.createElement("img");

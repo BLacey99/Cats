@@ -2,17 +2,17 @@ import { getImages } from "./getImages.js";
 import { getFacts } from "./getFacts.js";
 import { buildCards } from "./buildCards.js";
 
-const buildArray =async (arr, amount) => {
+const buildArray = async (arr, amount) => {
     const arrayImages = [];
     const arrayFacts = [];
-      await getImages(arrayImages, amount), await getFacts(arrayFacts, amount);
+      await getImages(arrayImages, amount); 
+      await getFacts(arrayFacts, amount);
   
-      let cat = {key:'', image:'', fact:''};
+      let cardData = {key:'', image:'', fact:''};
   
-      let i = 0;
-      for (i; i < amount; i++) {
-        cat = {key:i, image:arrayImages[i], fact:arrayFacts[i]};
-         arr.push(cat);
+      for (let i = 0; i < amount; i++) {
+        cardData = {key:i, image:arrayImages[i], fact:arrayFacts[i]};
+         arr.push(cardData);
       }
      // console.log(arr);
      buildCards(arr);
