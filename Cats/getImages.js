@@ -9,7 +9,7 @@ async function getImages(arrImgs, userInput) {
           if (arrImgs.length < userInput) {
             if (
               arrImgs.includes(
-                `https://cataas.com${data.url}` ||x``
+                `https://cataas.com${data.url}` ||
                   `https://cataas.com${(data.url = "undefined")}`
               )
             ) {
