@@ -1,5 +1,5 @@
 import { getImages } from "./getImages.js";
-import { getFacts } from "./getFacts.js";
+import { getFacts } from "./GetFacts.js";
 import { buildCards } from "./buildCards.js";
 
 const buildArray = async (arr, amount) => {
